@@ -1,0 +1,25 @@
+//using behavioral logic
+
+module MUX_2to1(
+    input wire i0,
+    input wire i1,
+    input wire s,
+    input wire e,
+    output reg y
+);
+
+always @(*) begin
+    if(e == 1'b0) begin
+        y = 1'b0;
+    end
+    else begin 
+        if(s == 1'b0) begin 
+            y = i0;
+        end
+        else begin
+            y = i1;
+        end
+    end
+end
+
+endmodule   
