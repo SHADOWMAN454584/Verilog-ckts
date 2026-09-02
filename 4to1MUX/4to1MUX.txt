@@ -1,0 +1,21 @@
+module mux4to1(
+    input d0,d1,d2,d3,s0,s1,
+    output reg y
+);
+
+always @(*) begin
+        if(!s1 && !s0) begin
+            y = d0;
+        end
+        else if(!s1 && s0) begin
+            y = d1;
+        end
+        else if(s1 && !s0) begin
+            y = d2;
+        end
+        else begin
+            y = d3;
+        end
+    end
+endmodule    
+ 

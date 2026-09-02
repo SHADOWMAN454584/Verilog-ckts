@@ -1,0 +1,13 @@
+module full_substractor(
+    input a,
+    input b,
+    input c,
+    output y,
+    output bor
+);
+
+assign y = a ^ b ^ c;
+
+assign bor = ((~a)&b) | (c & (~(a ^ b)));
+
+endmodule 

@@ -1,0 +1,15 @@
+module full_substractor(
+    input a,
+    input b,
+    input c,
+    output reg y,
+    output reg bor
+);
+always @(*) begin 
+    // {bor, y} forms a 2-bit result representing:
+    // bor = 2's weight (borrow out)
+    // y   = 1's weight (difference)
+    {bor,y} = a-b-c;
+end
+
+endmodule 
