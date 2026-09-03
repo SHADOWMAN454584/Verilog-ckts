@@ -1,0 +1,26 @@
+module mux1to4(In,sel,a,b,c,d);
+
+    input In;
+    input [1:0]sel;
+    output reg a,b,c,d;
+    
+    always @(*) begin
+        a=1'b0;
+        b=1'b0;
+        c=1'b0;
+        d=1'b0;
+        if(sel == 2'b00) begin
+            a=In;
+        end
+        else if(sel == 2'b01) begin
+            b=In;
+        end
+        else if(sel == 2'b10) begin
+            c=In;
+        end
+        else  begin
+            d=In;
+        end
+    end
+endmodule    
+

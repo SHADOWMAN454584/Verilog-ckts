@@ -1,0 +1,32 @@
+module tb_mux1to4();
+    reg In;
+    reg [1:0] sel;
+    wire  a,b,c,d;
+    
+    mux1to4 dut(
+    .In(In),
+    .a(a),
+    .b(b),
+    .c(c),
+    .d(d),
+    .sel(sel)    
+    );
+    
+    initial begin
+        In = 1'b1;
+
+        // 2. Cycle through select lines to test each output path
+        sel = 2'b00; // Expect: a = 1, b = 0, c = 0, d = 0
+        #10;
+        sel = 2'b01; // Expect: a = 0, b = 1, c = 0, d = 0
+        #10;
+        sel = 2'b10; // Expect: a = 0, b = 0, c = 1, d = 0
+        #10;
+        sel = 2'b11; // Expect: a = 0, b = 0, c = 0, d = 1
+        #10;
+        // 3. Test with In = 0 (all outputs should be 0 regardless of sel)
+        In = 1'b0;
+        sel = 2'b01; // Expect: all outputs 0
+        #10 $finish;
+     end
+endmodule
