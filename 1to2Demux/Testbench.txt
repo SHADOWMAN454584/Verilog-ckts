@@ -1,0 +1,24 @@
+module tb_demux1to2();
+
+    reg In,sel;
+    wire a,b;
+    
+    demux1to2 dut(
+        .In(In),
+        .sel(sel),
+        .a(a),
+        .b(b)
+    );
+    
+    initial begin
+        In = 1'b1;sel = 1'b0;
+        #10
+        In = 1'b1;sel = 1'b1;
+        #10
+        In = 1'b0;sel = 1'b0;
+        #10
+        In = 1'b0;sel = 1'b1;
+        #10
+        $finish;
+    end
+endmodule 

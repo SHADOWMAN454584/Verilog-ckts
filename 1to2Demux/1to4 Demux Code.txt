@@ -1,0 +1,16 @@
+module demux1to2(In,sel,a,b);
+
+    input In,sel;
+    output reg a,b;
+    
+    always @(*) begin
+        a = 1'b0;
+        b = 1'b0;
+        if(sel == 1'b0) begin
+            a = In;
+        end
+        else begin
+            b = In;
+        end
+    end
+endmodule 
