@@ -1,0 +1,17 @@
+module tb_buffer();
+
+    reg x;
+    wire y;
+    
+    buffer uut(
+        .x(x),
+        .y(y)
+    );
+    
+    initial begin 
+        #10; x=0;
+        #10; x=1;
+        #10; $finish;
+    end
+endmodule
+    
