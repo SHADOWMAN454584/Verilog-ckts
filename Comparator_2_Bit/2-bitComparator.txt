@@ -1,0 +1,23 @@
+module comparator_2bit(
+    input [1:0] A,
+    input [1:0] B,
+    output reg x,
+    output reg y,
+    output reg z
+);
+
+    always@(*) begin
+        x = 0;
+        y = 0;
+        z = 0;
+        if(A > B) begin
+            x = 1;
+        end
+        else if(A == B) begin
+            y = 1;
+        end
+        else begin
+            z = 1;
+        end
+    end 
+endmodule
