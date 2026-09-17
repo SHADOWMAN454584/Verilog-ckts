@@ -1,0 +1,48 @@
+module alu_4bit(
+    input [3:0]A,
+    input [3:0]B,
+    input [2:0]s,
+    output reg [3:0]carry,
+    output reg alu_out
+);
+
+always @(*) begin
+    alu_out = 4'b0000;
+    carry = 1'b0;
+    case(s)
+        3'b000: begin
+            {carry,alu_out} = A + B;
+        end
+        3'b001: begin
+            {carry,alu_out} = A - B;
+        end
+        3'b010: begin
+            {carry,alu_out} = A + 1'b1;
+        end
+        3'b011: begin
+            {carry,alu_out} = A - 1'b1;
+        end        
+        3'b100: begin
+            alu_out = A & B;
+            carry = 1'b0;
+        end
+        3'b101: begin
+            alu_out = A | B;
+            carry = 1'b0;
+        end
+        3'b110: begin
+            alu_out = A ^ B;
+            carry = 1'b0;
+        end
+        3'b111: begin
+            alu_out = ~A;
+            carry = 1'b0;   
+        end
+        default: begin
+            alu_out = 4'b0000;
+            carry = 1'b0;
+        end 
+    endcase
+end
+endmodule 
+        

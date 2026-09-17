@@ -1,0 +1,83 @@
+module tb_alu_4bit();
+    reg [3:0] A;
+    reg [3:0] B;
+    reg [2:0] s;
+    wire alu_out;
+    wire carry;
+    
+    alu_4bit uut(
+        .A(A),
+        .B(B),
+        .s(s),
+        .alu_out(alu_out),
+        .carry(carry)
+    );
+    initial begin
+        // Initialize inputs
+        A   = 4'b0000;
+        B   = 4'b0000;
+        s = 3'b000;
+        #10;
+
+        // 1. ADD (Sel = 000): 5 + 3 = 8
+        A = 4'd5;
+        B = 4'd3;
+        s = 3'b000;
+        #10;
+
+        // 2. ADD with Overflow (Sel = 000): 10 + 9 = 19 (Out = 3, Carry = 1)
+        A = 4'd10;
+        B = 4'd9;
+        s = 3'b000;
+        #10;
+
+        // 3. SUB (Sel = 001): 9 - 4 = 5
+        A = 4'd9;
+        B = 4'd4;
+        s = 3'b001;
+        #10;
+
+        // 4. SUB with Borrow (Sel = 001): 2 - 5 (Out = 13, Carry = 1)
+        A = 4'd2;
+        B = 4'd5;
+        s = 3'b001;
+        #10;
+
+        // 5. INCREMENT (Sel = 010): 7 + 1 = 8
+        A = 4'd7;
+        B = 4'd0;
+        s = 3'b010;
+        #10;
+
+        // 6. DECREMENT (Sel = 011): 10 - 1 = 9
+        A = 4'd10;
+        B = 4'd0;
+        s = 3'b011;
+        #10;
+
+        // 7. BITWISE AND (Sel = 100): 1100 & 1010 = 1000
+        A = 4'b1100;
+        B = 4'b1010;
+        s = 3'b100;
+        #10;
+
+        // 8. BITWISE OR (Sel = 101): 1100 | 0011 = 1111
+        A = 4'b1100;
+        B = 4'b0011;
+        s = 3'b101;
+        #10;
+
+        // 9. BITWISE XOR (Sel = 110): 1100 ^ 1010 = 0110
+        A = 4'b1100;
+        B = 4'b1010;
+        s = 3'b110;
+        #10;
+
+        // 10. BITWISE NOT (Sel = 111): ~1010 = 0101
+        A = 4'b1010;
+        B = 4'b0000;
+        s = 3'b111;
+        #10;
+
+    end
+endmodule 
